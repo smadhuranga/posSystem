@@ -1,0 +1,56 @@
+Controllers:
+
+Handle business logic for products, customers, and orders
+Use the temporary array database for CRUD operations
+Include error handling
+
+Utils:
+
+Navigation handling
+Dynamic script and stylesheet loading
+Tab switching functionality
+
+-------------------------------------------------------------------------------
+
+// customer.js
+
+// Define the Customer constructor
+function Customer(name, email, phone, address) {
+  this.name = name;
+  this.email = email;
+  this.phone = phone;
+  this.address = address;
+  this.createdAt = new Date();
+}
+
+// database.js
+
+// Temporary array to store customer objects
+const customerDatabase = [];
+
+// Function to add a new customer
+function addCustomer(name, email, phone, address) {
+  const newCustomer = new Customer(name, email, phone, address);
+  customerDatabase.push(newCustomer);
+  console.log('Customer added:', newCustomer);
+}
+
+// main.js
+
+$(document).ready(function() {
+  $('#addCustomerForm').submit(function(event) {
+    event.preventDefault();
+
+    const name = $('#name').val();
+    const email = $('#email').val();
+    const phone = $('#phone').val();
+    const address = $('#address').val();
+
+    // Call addCustomer directly
+    addCustomer(name, email, phone, address);
+
+    // Clear form fields after submission
+    $('#name, #email, #phone, #address').val('');
+  });
+});
+
